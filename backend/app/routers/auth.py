@@ -44,7 +44,7 @@ async def recover_password(request: RecoverPasswordRequest, db: AsyncSession = D
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     otp_code = await crud.create_otp(db, user.id)
-    utils.send_email(user.email, "Your OTP Code", f"Your OTP code is: {otp_code}")
+    utils.send_email(user.email, "Your Insiread Code", f"Your OTP code is: {otp_code}", otp_code=otp_code)
     return {"msg": "OTP sent to email"}
 
 @router.post("/verify-otp")

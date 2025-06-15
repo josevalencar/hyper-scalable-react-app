@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Virtual environments
+venv/
+.env/
+.env.*
+
+# Alembic
+alembic/versions/
+
+# Database
+*.sqlite3
+*.db
+
+# Environment variables and secrets
+*.env
+.env
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Uvicorn/Starlette
+instance/
+
+# Pytest
+.cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+.cache
+
+# mypy
+.mypy_cache/
+.dmypy.json
+
+# Pyre type checker
+.pyre/
