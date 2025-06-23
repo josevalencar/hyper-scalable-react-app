@@ -14,6 +14,9 @@ def get_books(
     mime_type: Optional[str] = None,
     search: Optional[str] = None,
     topic: Optional[str] = None,
+    limit: Optional[int] = None,
+    offset: Optional[int] = None,
+    count_only: bool = False,
 ) -> List[Book]:
     # Start with base query: exclude books with null download_count or null title
     query = db.query(Book).filter(Book.download_count != None, Book.title != None)
@@ -84,7 +87,14 @@ def get_books(
             or_(Bookshelf.name.ilike(f"%{topic}%"), Subject.name.ilike(f"%{topic}%"))
         )
 
-    return query.distinct().all()
+    query = query.distinct()
+    if count_only:
+        return query.count()
+    if limit is not None:
+        query = query.limit(limit)
+    if offset is not None:
+        query = query.offset(offset)
+    return query.all()
 
 def get_book_by_gutenberg_id(db: Session, gutenberg_id: int) -> Optional[Book]:
     return db.query(Book).filter(Book.gutenberg_id == gutenberg_id).first() 

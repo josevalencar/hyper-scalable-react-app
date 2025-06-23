@@ -16,7 +16,7 @@ const Register: React.FC<RegisterProps> = ({ onSwitch, onAuthSuccess }) => {
   const handleRegister = async () => {
     setLoading(true);
     try {
-      await registerApi(email, password);
+      await registerApi(name, email, password);
       Alert.alert('Success', 'Registration successful!');
       onAuthSuccess();
     } catch (err: any) {
